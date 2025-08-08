@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "GPT 翻譯助手",
-    "version": "1.0",
-    "description": "使用 OpenAI GPT 翻譯選取的文字",
+    "version": "1.1",
+    "description": "使用 OpenAI GPT 翻譯選取的文字，並插入輸入框",
     "permissions": [
       "contextMenus",
       "storage",
@@ -10,21 +10,25 @@
       "activeTab",
       "clipboardWrite"
     ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icon.png"
-      }
-    },
+    "host_permissions": [
+      "<all_urls>"
+    ],
     "background": {
       "service_worker": "background.js"
     },
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js"]
+        "js": ["content.js"],
+        "run_at": "document_idle"
       }
     ],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png"
+      }
+    },
     "icons": {
       "16": "icon.png"
     }
