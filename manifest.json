@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "GPT 翻譯助手",
+    "name": "GPT Translator Assistant",
     "version": "1.1",
-    "description": "使用 OpenAI GPT 翻譯選取的文字，並插入輸入框",
+    "description": "Translate selected text using OpenAI GPT and insert it into the input field.",
     "permissions": [
       "contextMenus",
       "storage",

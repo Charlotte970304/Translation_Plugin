@@ -1,16 +1,16 @@
 let lastFocusedInput = null;
 
-// 共用的輸入函數，會同步觸發 input event
+// Shared input function that triggers the input event as well
 function setInputText(el, text) {
     console.log("✅ setInputText called with:", text);
     
     if (el.isContentEditable) {
-      // 嘗試移除原內容再加入新翻譯
+      // Try clearing the original content and inserting the new translation
       el.focus();
       document.execCommand("selectAll", false, null);
       document.execCommand("insertText", false, text);
       
-      // 強制觸發輸入事件讓框架更新狀態
+      // Force dispatch input event to trigger framework updates
       el.dispatchEvent(new InputEvent("input", {
         bubbles: true,
         cancelable: true,
@@ -26,7 +26,7 @@ function setInputText(el, text) {
     }
   }
 
-// 追蹤使用者聚焦在哪個輸入框
+// Track the last focused input element
 document.addEventListener("focusin", (e) => {
   const el = e.target;
   if (
@@ -38,14 +38,14 @@ document.addEventListener("focusin", (e) => {
   }
 });
 
-// 接收來自 background 的翻譯結果
+// Listen for translation result from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "insertTranslation" && message.translation) {
     if (lastFocusedInput) {
       setInputText(lastFocusedInput, message.translation);
       lastFocusedInput.focus();
     } else {
-      alert("找不到輸入框，已複製翻譯到剪貼簿！");
+      alert("No input field detected. Translation copied to clipboard.");
       navigator.clipboard.writeText(message.translation);
     }
   }
