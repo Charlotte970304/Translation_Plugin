@@ -1,5 +1,5 @@
 # GPT Translator Chrome Extension
-A simple Chrome extension that translates selected or typed text using OpenAI's GPT API and inserts the translation directly into input fields like tweet boxes, comment areas, or search bars.
+A simple Chrome extension that translates typed text using OpenAI's GPT API and inserts the translation directly into input fields like tweet boxes, comment areas, or search bars.
 
 ## ⌨️ Shortcut
 - `Ctrl + Alt + T`：Translate the content of the currently focused input field
