@@ -1,4 +1,4 @@
-// 安全設值（繞過 React）
+// self set text
 function setNativeValue(el, value) {
   const tag = el.tagName;
   let proto = null;
@@ -24,13 +24,13 @@ function replaceInContentEditable(text) {
   const sel = window.getSelection();
   if (!sel) return false;
 
-  // 嘗試用 execCommand 插入（相容性較高）
+  // try to insert
   if (document.queryCommandSupported("insertText")) {
     elFocus();
     document.execCommand("selectAll", false, null);
     document.execCommand("insertText", false, text);
   } else {
-    // Range API 備援
+    // Range API 
     if (sel.rangeCount > 0) {
       const range = sel.getRangeAt(0);
       range.deleteContents();
@@ -62,7 +62,7 @@ document.addEventListener("focusin", (e) => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message) return;
 
-  // 讓 background.js 拿到目前輸入框內容
+  // get the input text
   if (message.type === "getCurrentInputValue") {
     if (lastFocusedInput) {
       const value = lastFocusedInput.isContentEditable
@@ -75,7 +75,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true;
   }
 
-  // 右鍵翻譯
+  // translate by right key
   if (message.type === "insertOrReplaceSelection" && message.translation) {
     if (lastFocusedInput) {
       if (lastFocusedInput.isContentEditable) {
@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
   }
 
-  // 快捷鍵翻譯
+  // translate by shortcut
   if (message.type === "replaceCurrentInput" && message.translation) {
     if (lastFocusedInput) {
       if (lastFocusedInput.isContentEditable) {
