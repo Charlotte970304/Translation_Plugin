@@ -1,36 +1,49 @@
 {
-    "manifest_version": 3,
-    "name": "GPT Translator Assistant",
-    "version": "1.1",
-    "description": "Translate selected text using OpenAI GPT and insert it into the input field.",
-    "permissions": [
-      "contextMenus",
-      "storage",
-      "scripting",
-      "activeTab",
-      "clipboardWrite"
-    ],
-    "host_permissions": [
-      "<all_urls>"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "run_at": "document_idle"
-      }
-    ],
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icon.png"
-      }
-    },
-    "icons": {
-      "16": "icon.png"
+  "manifest_version": 3,
+  "name": "GPT Translator Assistant",
+  "version": "1.3.1",
+  "description": "Translate selected text or the current input field using OpenAI GPT.",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "scripting",
+    "activeTab",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "commands": {
+    "translate-current-input": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T"
+      },
+      "description": "Translate the current input field text with GPT"
     }
   }
-  
+}
