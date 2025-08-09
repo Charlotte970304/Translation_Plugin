@@ -34,7 +34,7 @@ ${text}`;
   return translation;
 }
 
-// 建立右鍵選單
+// build right key for selection
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "translate-selection",
@@ -43,7 +43,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-// 處理右鍵選取翻譯
+// deal with right key translation
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   if (info.menuItemId !== "translate-selection") return;
 
@@ -80,13 +80,13 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   }
 });
 
-// 處理快捷鍵翻譯當前輸入框
+// deal with shortcut translation
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === "translate-current-input") {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab?.id) return;
 
-    // 先叫 content script 回傳目前輸入框文字
+    // call content script return text
     chrome.tabs.sendMessage(tab.id, { type: "getCurrentInputValue" }, async (response) => {
       const inputValue = response?.value?.trim();
       if (!inputValue) {
