@@ -3,18 +3,31 @@
   <head>
     <meta charset="utf-8" />
     <title>GPT Translator Assistant</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, sans-serif; margin: 12px; width: 320px; }
+      h3 { margin: 0 0 8px; font-size: 16px; }
+      label { display: block; margin: 8px 0 4px; }
+      input, select, button { width: 100%; box-sizing: border-box; }
+      input, select { padding: 8px; }
+      button { margin-top: 12px; padding: 10px; cursor: pointer; }
+      small { color: #666; display: block; margin-top: 6px; }
+    </style>
   </head>
   <body>
     <h3>Settings</h3>
-    <input id="apikey" placeholder="Enter your OpenAI API Key" style="width:100%" /><br/><br/>
-    <label for="targetLang">Target Language:</label>
+    <label for="apikey">OpenAI API Key</label>
+    <input id="apikey" placeholder="sk-..." />
+    <label for="targetLang">Target Language</label>
     <select id="targetLang">
+      <option value="Traditional Chinese">Traditional Chinese</option>
       <option value="English">English</option>
       <option value="Japanese">Japanese</option>
-      <option value="Traditional Chinese">Traditional Chinese</option>
-    </select><br/><br/>
+      <option value="Simplified Chinese">Simplified Chinese</option>
+      <option value="Korean">Korean</option>
+      <option value="Spanish">Spanish</option>
+    </select>
     <button id="save">Save</button>
-
+    <small>Note: API key is stored locally on your browser account (Chrome sync).</small>
     <script src="popup.js"></script>
   </body>
 </html>
